@@ -1,12 +1,12 @@
 vim.diagnostic.config({
-  virtual_text = true,
+  virtual_text = false,
   signs = true,
   update_in_insert = false,
   underline = true,
   show_header = false,
   severity_sort = true,
   float = {
-    source = "always",
+    source = true, -- "always",
     border = "rounded",
     style = "minimal",
     header = "",
