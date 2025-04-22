@@ -64,6 +64,10 @@ if dap and dapui and vt then
     require("insis.dap.nvim-dap.config.lua").setup()
   end
 
+  if cfg.python and cfg.python.enable then
+    require("insis.dap.nvim-dap.config.python")
+  end
+
   if cfg.golang and cfg.golang.enable then
     require("dap-go").setup()
   end

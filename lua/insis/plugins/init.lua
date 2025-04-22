@@ -314,13 +314,22 @@ local plugins = {
   -- nvim-dap
   { "mfussenegger/nvim-dap" },
   { "theHamsta/nvim-dap-virtual-text" },
-  { "rcarriga/nvim-dap-ui" },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio",
+    },
+  },
 
   -- node
   { "mxsdev/nvim-dap-vscode-js" },
 
   -- go
   { "leoluz/nvim-dap-go" },
+
+  -- python
+  { "mfussenegger/nvim-dap-python" },
 
   --[[ 
   -- TODO: python not work yet
@@ -382,6 +391,47 @@ local plugins = {
   --   "Exafunction/codeium.nvim",
   --   config = function()
   --     require("insis.plugins.codeium").init()
+  --   end,
+  -- },
+
+  -- {
+  --   "folke/which-key.nvim",
+  --   config = function()
+  --     require("which-key").setup({
+  --       -- 插件的具体配置可以写在这里（可选）
+  --     })
+  --   end,
+  -- },
+
+  -- which-key
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
+    triggers = {
+      { "<auto>", mode = "nixsotc" },
+      { "a", mode = { "n", "v" } },
+    },
+  },
+
+  -- {
+  --   "nvim-telescope/telescope.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim" },
+  --   config = function()
+  --     require("telescope").setup({})
   --   end,
   -- },
 }

@@ -16,6 +16,8 @@ return function(config)
     getLSPEnsureList = function()
       if config.lsp == "pylsp" then
         return { "pylsp" }
+      elseif config.lsp == "pyright" then
+        return { "pyright" }
       end
       return {}
     end,
@@ -24,6 +26,10 @@ return function(config)
       if config.lsp == "pylsp" then
         return {
           pylsp = require("insis.lsp.config.pylsp"),
+        }
+      elseif config.lsp == "pyright" then
+        return {
+          pylsp = require("insis.lsp.config.pyright"),
         }
       end
       return {}
