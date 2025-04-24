@@ -20,4 +20,10 @@ require("insis").setup({
     enable = true,
     lsp = "pyright",
   },
+  cmp = {
+    copilot = true,
+  },
+  copilot_chat = {
+    enable = true,
+  },
 })

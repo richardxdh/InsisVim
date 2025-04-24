@@ -1,3 +1,4 @@
+-- pip install debugpy
 local dap = require("dap")
 print("tppython..", dap)
 
