@@ -123,8 +123,8 @@ code.setup({
   },
 
   strategies = {
-    chat = { adapter = "copilot_claude" },
-    inline = { adapter = "copilot_claude" },
+    chat = { adapter = "copilot" },
+    inline = { adapter = "copilot" },
   },
 
   opts = {
