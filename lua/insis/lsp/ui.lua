@@ -1,6 +1,6 @@
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 vim.diagnostic.config({
-  virtual_text = true,
+  virtual_text = false,
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = signs.Error,

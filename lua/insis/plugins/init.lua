@@ -5,7 +5,7 @@ local plugins = {
   -- requires
   { "kyazdani42/nvim-web-devicons" },
   { "moll/vim-bbye" },
-  { "nvim-lua/plenary.nvim" },
+  { "nvim-lua/plenary.nvim", branch = "master" },
   -- nvim-notify
   {
     "rcarriga/nvim-notify",
@@ -370,6 +370,10 @@ local plugins = {
   },
   {
     "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
     config = function()
       require("insis.ai.codecompanion.codecompanion")
     end,

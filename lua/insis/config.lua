@@ -220,7 +220,7 @@ local InsisUserConfig = {
   telescope = {
     enable = true,
     keys = {
-      find_files = { "<C-p>", "ff" },
+      find_files = { "<C-p>" },
       live_grep = "<C-f>",
       -- super find  "xx" -tmd ---@see telescope-live-grep-args.nvim
       live_grep_args = "sf",
@@ -332,11 +332,11 @@ local InsisUserConfig = {
     enable = false,
     keys = {
       -- Code Chat
-      quick_chat = "<leader>cc",
+      quick_chat = "<leader>ccq",
       -- Code Prompt
-      prompt_actions = "<leader>cp",
+      prompt_actions = "<leader>ccp",
       -- Code Help
-      help_actions = "<leader>ch",
+      help_actions = "<leader>cch",
     },
   },
 
