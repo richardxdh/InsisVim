@@ -59,7 +59,7 @@ local InsisUserConfig = {
   keys = {
     leader_key = " ",
     -- quick save / quite
-    n_save = "<leader>w", -- :w
+    n_save = "<leader>w",       -- :w
     n_force_quit = "<leader>q", -- :qa!
     -- quick move
     n_v_5j = "<C-j>",
@@ -198,8 +198,8 @@ local InsisUserConfig = {
       dir_up = "<",
       -- file toggle --
       toggle_git_ignored = "i", --.gitignore (git enable)
-      toggle_dotfiles = ".", -- Hide (dotfiles)
-      toggle_custom = "u", -- togglle custom config
+      toggle_dotfiles = ".",    -- Hide (dotfiles)
+      toggle_custom = "u",      -- togglle custom config
       -- file operate --
       create = "a",
       remove = "d",
@@ -296,7 +296,7 @@ local InsisUserConfig = {
     enable = true,
     -- normal mode
     toggler = {
-      line = "gcc", -- line comment
+      line = "gcc",  -- line comment
       block = "gbc", -- block comment
     },
     -- visual mode
@@ -675,10 +675,10 @@ local InsisUserConfig = {
     enable = true,
     code_actions = "gitsigns",
     -- sign display
-    signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-    numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
-    linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
-    word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
+    signcolumn = true,          -- Toggle with `:Gitsigns toggle_signs`
+    numhl = false,              -- Toggle with `:Gitsigns toggle_numhl`
+    linehl = false,             -- Toggle with `:Gitsigns toggle_linehl`
+    word_diff = false,          -- Toggle with `:Gitsigns toggle_word_diff`
     current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
   },
 

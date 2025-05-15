@@ -8,7 +8,7 @@
 -- getNulllsSources
 -- getNeotestAdapters
 
---[[ 
+--[[
 
 Empty Env template
 
