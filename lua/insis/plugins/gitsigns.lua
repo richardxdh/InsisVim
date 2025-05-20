@@ -105,6 +105,6 @@ if gitsigns and cfg and cfg.enable then
       col = 1,
     },
     -- I'm not gona remember these keys for now, let's use code action
-    -- on_attach = gitsigns_on_attach,
+    on_attach = gitsigns_on_attach,
   })
 end

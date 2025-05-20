@@ -299,12 +299,12 @@ local plugins = {
     end,
   },
 
-  -- {
-  --   "tpope/vim-fugitive",
-  --   -- config = function()
-  --   --   require("insis.plugins.fugitive")
-  --   -- end,
-  -- },
+  {
+    "tpope/vim-fugitive",
+    -- config = function()
+    --   require("insis.plugins.fugitive")
+    -- end,
+  },
 
   --------------------- DAP ---------------------------------------------------
 
