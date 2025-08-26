@@ -26,4 +26,7 @@ require("insis").setup({
   copilot_chat = {
     enable = true,
   },
+  clangd = {
+    enable = true,
+  },
 })

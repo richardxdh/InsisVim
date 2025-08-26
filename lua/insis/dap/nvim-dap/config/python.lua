@@ -73,7 +73,7 @@ local function append_project_run_configs()
     if run_config_list then
       for _, cfg in ipairs(run_config_list) do
         if type(cfg) == "table" and cfg.name and cfg.type and cfg.request then
-          table.insert(dap.configurations.python, cfg)
+          table.insert(dap.configurations.python, 1, cfg)
         else
           vim.notify("[dap-python] Invalid config format in run.lua, ignored", vim.log.levels.WARN)
         end

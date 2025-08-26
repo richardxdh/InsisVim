@@ -51,6 +51,10 @@ if telescope and lga_actions and cfg and cfg.enable then
   keymap("n", cfg.keys.find_files, "<CMD>Telescope find_files<CR>")
   keymap("n", cfg.keys.live_grep, ":<CMD>Telescope live_grep<CR>")
   keymap("n", cfg.keys.live_grep_args, ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+  keymap("n", "<leader>lf", "<Cmd>Telescope lsp_document_symbols symbols=function,method<CR>")
+  keymap("n", "<leader>lc", "<Cmd>Telescope lsp_document_symbols symbols=class<CR>")
+  keymap("n", "<leader>lm", "<Cmd>Telescope lsp_document_symbols symbols=module<CR>")
+  keymap("n", "<leader>lv", "<Cmd>Telescope lsp_document_symbols symbols=variable<CR>")
 
   pcall(telescope.load_extension, "env")
   -- To get ui-select loaded and working with telescope, you need to call
