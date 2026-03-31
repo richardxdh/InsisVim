@@ -77,3 +77,5 @@ vim.opt.clipboard = "unnamedplus"
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.virtualedit = "block"
+-- 视图只能通过全局状态栏完全折叠, avante.nvim
+vim.opt.laststatus = 3

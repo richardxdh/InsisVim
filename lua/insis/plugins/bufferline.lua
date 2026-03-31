@@ -31,7 +31,7 @@ if bufferline and cfg and cfg.enable then
   keymap("n", cfg.keys.prev, ":BufferLineCyclePrev<CR>")
   keymap("n", cfg.keys.next, ":BufferLineCycleNext<CR>")
   -- "moll/vim-bbye"
-  keymap("n", cfg.keys.close, ":Bdelete!<CR>")
+  keymap("n", cfg.keys.close, ":Bdelete<CR>")
   keymap("n", cfg.keys.close_left, ":BufferLineCloseLeft<CR>")
   keymap("n", cfg.keys.close_right, ":BufferLineCloseRight<CR>")
   keymap("n", cfg.keys.close_others, ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>")

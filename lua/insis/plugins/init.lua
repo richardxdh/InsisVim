@@ -3,9 +3,9 @@ local cfg = require("insis").config
 local plugins = {
   -------------------------- plugins -------------------------------------------
   -- requires
-  { "kyazdani42/nvim-web-devicons" },
+  { "nvim-tree/nvim-web-devicons" },
   { "moll/vim-bbye" },
-  { "nvim-lua/plenary.nvim", branch = "master" },
+  { "nvim-lua/plenary.nvim",      branch = "master" },
   -- nvim-notify
   {
     "rcarriga/nvim-notify",
@@ -15,7 +15,12 @@ local plugins = {
   },
   -- nvim-tree
   {
-    "kyazdani42/nvim-tree.lua",
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
     config = function()
       require("insis.plugins.nvim-tree")
     end,
@@ -42,6 +47,11 @@ local plugins = {
   { "nvim-telescope/telescope-live-grep-args.nvim" },
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      -- optional but recommended
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    },
     -- opt = true,
     -- cmd = "Telescope",
     config = function()
@@ -98,12 +108,12 @@ local plugins = {
   },
   -- use indent-blankline or hlchunk ?
   ------------------------------------
-  -- {
-  --   "shellRaining/hlchunk.nvim",
-  --   config = function()
-  --     require("insis.plugins.hlchunk")
-  --   end,
-  -- },
+  {
+    "shellRaining/hlchunk.nvim",
+    config = function()
+      require("insis.plugins.hlchunk")
+    end,
+  },
   -------------------------------------
   -- toggleterm
   {
@@ -114,11 +124,22 @@ local plugins = {
   },
 
   -- nvim-surround
+  -- {
+  --   "kylechui/nvim-surround",
+  --   config = function()
+  --     require("insis.plugins.nvim-surround")
+  --   end,
+  -- },
   {
     "kylechui/nvim-surround",
-    config = function()
-      require("insis.plugins.nvim-surround")
-    end,
+    version = "^4.0.0", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    -- Optional: See `:h nvim-surround.configuration` and `:h nvim-surround.setup` for details
+    -- config = function()
+    --     require("nvim-surround").setup({
+    --         -- Put your configuration here
+    --     })
+    -- end
   },
 
   -- nvim-autopairs
@@ -215,7 +236,7 @@ local plugins = {
   { "williamboman/mason-lspconfig.nvim" },
   { "WhoIsSethDaniel/mason-tool-installer.nvim" },
   -- Lspconfig
-  { "neovim/nvim-lspconfig" },
+  { "neovim/nvim-lspconfig",                    tag = "v2.4.0" },
   -- Completion engine
   { "hrsh7th/nvim-cmp" },
   -- Snippet engine
@@ -223,10 +244,10 @@ local plugins = {
   { "saadparwaiz1/cmp_luasnip" },
   -- Completion sources
   { "hrsh7th/cmp-vsnip" },
-  { "hrsh7th/cmp-nvim-lsp" }, -- { name = nvim_lsp }
-  { "hrsh7th/cmp-buffer" }, -- { name = 'buffer' },
-  { "hrsh7th/cmp-path" }, -- { name = 'path' }
-  { "hrsh7th/cmp-cmdline" }, -- { name = 'cmdline' }
+  { "hrsh7th/cmp-nvim-lsp" },                -- { name = nvim_lsp }
+  { "hrsh7th/cmp-buffer" },                  -- { name = 'buffer' },
+  { "hrsh7th/cmp-path" },                    -- { name = 'path' }
+  { "hrsh7th/cmp-cmdline" },                 -- { name = 'cmdline' }
   { "hrsh7th/cmp-nvim-lsp-signature-help" }, -- { name = 'nvim_lsp_signature_help' }
   -- common snippets
   { "rafamadriz/friendly-snippets" },
@@ -339,7 +360,7 @@ local plugins = {
   -- pip install debugpy
   { "mfussenegger/nvim-dap-python" },
 
-  --[[ 
+  --[[
   {
   "mfussenegger/nvim-dap-python",
   requires = { "mfussenegger/nvim-dap" },
@@ -389,9 +410,9 @@ local plugins = {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
       { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+      { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
     },
-    build = "make tiktoken", -- Only on MacOS or Linux
+    build = "make tiktoken",        -- Only on MacOS or Linux
     config = function()
       require("insis.plugins.copilot").copilot_chat()
     end,
@@ -434,7 +455,7 @@ local plugins = {
     },
     triggers = {
       { "<auto>", mode = "nixsotc" },
-      { "a", mode = { "n", "v" } },
+      { "a",      mode = { "n", "v" } },
     },
   },
 
@@ -464,6 +485,87 @@ local plugins = {
       require("insis.plugins.noice")
     end,
   },
+
+  {
+    "yetone/avante.nvim",
+    -- 如果您想从源代码构建，请执行 `make BUILD_FROM_SOURCE=true`
+    -- ⚠️ 一定要加上这一行配置！！！！！
+    build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+        or "make",
+    event = "VeryLazy",
+    version = false, -- 永远不要将此值设置为 "*"！永远不要！
+    ---@module 'avante'
+    ---@type avante.Config
+    opts = {
+      -- 在此处添加任何选项
+      -- 例如
+      provider = "poe_gpt_5_3_codex",
+      providers = {
+        m_openai = {
+          __inherited_from = "openai",
+          endpoint = "https://api.iseed.nyc.mn/v1",
+          api_key_name = "MOPENAI_API_KEY",
+          model = "gpt-5.3-codex",
+          disable_tools = true,
+          timeout = 120000, -- 120秒
+          stream = false,   -- 禁用流式传输
+        },
+        poe_gpt_5_3_codex = {
+          __inherited_from = "openai",
+          endpoint = "https://api.poe.com/v1",
+          api_key_name = "POE_API_KEY",
+          model = "gpt-5.3-codex",
+          disable_tools = true,
+          timeout = 120000, -- 120秒
+          stream = false,   -- 禁用流式传输
+        },
+        poe_claude_opus_4_6 = {
+          __inherited_from = "openai",
+          endpoint = "https://api.poe.com/v1",
+          api_key_name = "POE_API_KEY",
+          model = "claude-opus-4.6",
+          timeout = 120000, -- 120秒
+          stream = false,   -- 禁用流式传输
+        },
+      },
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- 以下依赖项是可选的，
+      "echasnovski/mini.pick",         -- 用于文件选择器提供者 mini.pick
+      "nvim-telescope/telescope.nvim", -- 用于文件选择器提供者 telescope
+      "hrsh7th/nvim-cmp",              -- avante 命令和提及的自动完成
+      "ibhagwan/fzf-lua",              -- 用于文件选择器提供者 fzf
+      "nvim-tree/nvim-web-devicons",   -- 或 echasnovski/mini.icons
+      "zbirenbaum/copilot.lua",        -- 用于 providers='copilot'
+      {
+        -- 支持图像粘贴
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {
+          -- 推荐设置
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = {
+              insert_mode = true,
+            },
+            -- Windows 用户必需
+            use_absolute_path = true,
+          },
+        },
+      },
+      {
+        -- 如果您有 lazy=true，请确保正确设置
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
+  },
 }
 
 -- Rust
@@ -471,7 +573,7 @@ if cfg.rust.enable then
   table.insert(plugins, {
     "mrcjkb/rustaceanvim",
     version = "^5", -- Recommended
-    lazy = false, -- This plugin is already lazy
+    lazy = false,   -- This plugin is already lazy
   })
 end
 

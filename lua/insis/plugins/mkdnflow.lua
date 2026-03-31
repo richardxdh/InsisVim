@@ -7,7 +7,14 @@ if mkdnflow and cfg and cfg.enable then
     modules = {
       maps = false,
     },
-    filetypes = { md = true, mdx = true, markdown = true },
+    -- filetypes = { md = true, mdx = true, markdown = true },
+    filetypes = {
+      markdown = true,  -- *.md *.markdown
+      rmarkdown = true, -- *.rmd
+      quarto = true,    -- *.qmd
+      -- 如果你不需要某种类型就设为 false
+      -- quarto   = false,
+    },
     links = {
       style = "markdown",
       implicit_extension = nil,
